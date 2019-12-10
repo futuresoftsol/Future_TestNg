@@ -13,4 +13,8 @@ public class Dashboard_Users {
 	public void dashboard_Users_TC2(){
 		System.out.println("dashboard_Users_TC2");
 	}
+	@Test
+	public void dashboard_Users_TC3(){
+		System.out.println("dashboard_Users_TC3");
+	}
 }
