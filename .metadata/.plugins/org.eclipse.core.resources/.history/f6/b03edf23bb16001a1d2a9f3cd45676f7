@@ -1,0 +1,21 @@
+package loginPage;
+
+import java.sql.Driver;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class Tables {
+	
+	static WebDriver driver=null;
+	public static void clickHeader(){
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[3]")).click();
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[3]/ul/li[1]")).click();
+		
+		List<WebElement> tableRows = driver.findElements(By.xpath("//table/tbody/tr"));
+		int totalRecords = tableRows.size();
+	}
+
+}

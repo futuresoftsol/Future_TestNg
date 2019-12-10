@@ -1,0 +1,182 @@
+package loginPage;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class LoginPage {
+	static WebDriver driver = null;
+	
+	// Handle Scroll Bar
+	public static void handleScrollBar(WebDriver driver, WebElement ele){
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].scrollIntoView(true)", ele);
+	} 
+	
+	// Single Text Box
+	public static void TC1(){
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]")).click();
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]/ul/li[1]")).click();
+		String input = "MyInput";
+		driver.findElement(By.id("user-message")).sendKeys(input);
+		driver.findElement(By.xpath("//*[text()='Show Message']")).click();
+		String expected = driver.findElement(By.xpath("//div[@id='user-message']/span")).getText();
+		if(input.equals(expected))
+			System.out.println("True");
+		else
+			System.out.println("False");
+	}
+	
+	// Multiple Text Boxes
+	public static void TC2(){
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]")).click();
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]/ul/li[1]")).click();
+		String input1 = "10";
+		String input2 = "20";
+		driver.findElement(By.id("sum1")).sendKeys(input1);
+		driver.findElement(By.id("sum2")).sendKeys(input2);
+		driver.findElement(By.xpath("//*[text()='Get Total']")).click();
+		String expected = driver.findElement(By.xpath("//div[@id='user-message']/span")).getText();
+		String result = driver.findElement(By.id("displayvalue")).getText();
+		if(Integer.parseInt(result) == (Integer.parseInt(input1)+Integer.parseInt(input2)))
+			System.out.println("True");
+		else
+			System.out.println("False");
+	}
+	
+	public static void TC3(){
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]")).click();
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]/ul/li[2]")).click();
+		driver.findElement(By.id("isAgeSelected")).click();
+		String expected = "Success - Check box is checked";
+		String act = driver.findElement(By.id("txtAge")).getText();
+		if(act.equals(expected))
+			System.out.println("TC3 is Passed");
+		else
+			System.out.println("TC3 is Failed");
+	}
+	
+	// Single Selection Dropdown
+	public static void TC4(){
+		List<WebElement> eleList = driver.findElements(By.xpath("//*[text()='Multiple Checkbox Demo']//following-sibling::div/div/label/input"));
+		for(WebElement ele : eleList){
+			ele.click();
+		}
+		String val = driver.findElement(By.id("check1")).getAttribute("value");
+		if(val.equals("Uncheck All"))
+			System.out.println("True");
+		else
+			System.out.println("False");
+	}
+	
+	// Multi Selection Dropdown
+	public static void TC5(){
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]")).click();
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]/ul/li[4]")).click();
+		Select select = new Select(driver.findElement(By.id("select-demo")));
+		List<WebElement> values = select.getOptions();
+		for(WebElement e : values){
+			System.out.println(e.getAttribute("value"));
+		}
+		select.selectByIndex(2);
+		System.out.println("First Selected Option : "+select.getFirstSelectedOption().getText());
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+		//select.selectByValue("Sunday");
+		//System.out.println("First Selected Option : "+select.getFirstSelectedOption().getText());
+	} 
+	
+	public static void TC6() throws InterruptedException{
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]")).click();
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]/ul/li[4]")).click();
+		Select sel = new Select(driver.findElement(By.name("States")));
+		if(sel.isMultiple()){
+			List<WebElement> list = sel.getOptions();
+			for(WebElement e : list){
+				e.click();
+			}
+			sel.deselectByIndex(2);
+			sel.deselectByVisibleText("Texas");
+		}
+		
+		List<WebElement> allSelectedOptions = sel.getAllSelectedOptions();
+		for(WebElement ele : allSelectedOptions){
+			System.out.println(ele.getAttribute("value"));			
+		}
+		sel.deselectAll();
+		Thread.sleep(2000);
+	} 
+	
+	public static void TC7(){
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]")).click();
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]/ul/li[6]")).click();
+		
+		driver.findElement(By.id("title")).sendKeys("Subject");
+		driver.findElement(By.id("description")).sendKeys("This my Breif Introduction..!");
+		driver.findElement(By.id("btn-submit")).click();
+		WebElement ele = driver.findElement(By.id("submit-control"));
+		WebDriverWait wait = new WebDriverWait(driver, 4);
+		wait.until(ExpectedConditions.textToBePresentInElement(ele, "Form submited Successfully!"));
+		System.out.println("Text Is : "+ele.getText());
+	}
+	
+	public static void TC8() throws InterruptedException{
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]")).click();
+		driver.findElement(By.xpath("//div[@id='navbar-brand-centered']/ul[1]/li[1]/ul/li[7]")).click();
+		
+		driver.findElement(By.className("selection")).click();
+		System.out.println("Before Total Elements Count : "+driver.findElements(By.xpath("//*[@class='select2-results']/ul/li")).size());
+		driver.findElement(By.xpath("//*[@class='select2-search select2-search--dropdown']/input")).sendKeys("st");
+		List<WebElement> eList = driver.findElements(By.xpath("//*[@class='select2-results']/ul/li"));
+		System.out.println("Selected Elements : "+eList.size());
+		System.out.println("--Printimng--");
+		for(WebElement e: eList ){
+			System.out.println(e.getText());
+			if(e.getText().equals("United States of America")){
+				Thread.sleep(1000);
+				e.click();
+			}
+		}
+		Thread.sleep(1000);		
+	}
+	public static void close(){
+		driver.close();
+	}
+	public static void main(String[] args) throws InterruptedException {
+		String path = System.getProperty("user.dir");
+		System.out.println(path);
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"\\drivers\\chromedriver.exe");
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("disable-infobars");
+		options.setExperimentalOption("useAutomationExtension", false);
+		options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+		/*DesiredCapabilities dc = DesiredCapabilities.chrome();
+		dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);*/
+		driver = new ChromeDriver(options);
+		driver.manage().window().maximize();
+		driver.get("https://www.seleniumeasy.com/test/");
+		System.out.println(driver.getTitle());	
+		//TC1();
+		//TC2();
+		//TC3();
+		//TC4();
+		//TC5();
+		//TC6();
+		//TC7();
+		//TC8();
+		Tables tbl =new Tables();
+		tbl.clickHeader(driver);
+		close();
+	}
+}

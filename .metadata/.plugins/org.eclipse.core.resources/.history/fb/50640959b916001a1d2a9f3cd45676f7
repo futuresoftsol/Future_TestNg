@@ -1,0 +1,10 @@
+package loginPage;
+
+public class Tables {
+	
+	public static void clickHeader(){
+		
+		
+	}
+
+}
