@@ -2,28 +2,28 @@
 <testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="26" started-at="2019-12-10T16:30:55Z" finished-at="2019-12-10T16:30:55Z">
+  <suite name="Login_Suit" duration-ms="29" started-at="2019-12-17T15:27:01Z" finished-at="2019-12-17T15:27:01Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="26" started-at="2019-12-10T16:30:55Z" finished-at="2019-12-10T16:30:55Z">
+    <test name="LoginTest" duration-ms="29" started-at="2019-12-17T15:27:01Z" finished-at="2019-12-17T15:27:01Z">
       <class name="login.Login">
-        <test-method status="PASS" signature="login_TC1()[pri:0, instance:login.Login@2c9f9fb0]" name="login_TC1" duration-ms="8" started-at="2019-12-10T22:00:55Z" finished-at="2019-12-10T22:00:55Z">
+        <test-method status="PASS" signature="login_TC1()[pri:0, instance:login.Login@2c9f9fb0]" name="login_TC1" duration-ms="8" started-at="2019-12-17T20:57:01Z" finished-at="2019-12-17T20:57:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login_TC1 -->
-        <test-method status="PASS" signature="login_TC2()[pri:0, instance:login.Login@2c9f9fb0]" name="login_TC2" duration-ms="1" started-at="2019-12-10T22:00:55Z" finished-at="2019-12-10T22:00:55Z">
+        <test-method status="PASS" signature="login_TC2()[pri:0, instance:login.Login@2c9f9fb0]" name="login_TC2" duration-ms="1" started-at="2019-12-17T20:57:01Z" finished-at="2019-12-17T20:57:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login_TC2 -->
-        <test-method status="PASS" signature="login_TC3()[pri:0, instance:login.Login@2c9f9fb0]" name="login_TC3" duration-ms="1" started-at="2019-12-10T22:00:55Z" finished-at="2019-12-10T22:00:55Z">
+        <test-method status="PASS" signature="login_TC3()[pri:0, instance:login.Login@2c9f9fb0]" name="login_TC3" duration-ms="1" started-at="2019-12-17T20:57:01Z" finished-at="2019-12-17T20:57:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login_TC3 -->
-        <test-method status="PASS" signature="login_TC4()[pri:0, instance:login.Login@2c9f9fb0]" name="login_TC4" duration-ms="2" started-at="2019-12-10T22:00:55Z" finished-at="2019-12-10T22:00:55Z">
+        <test-method status="PASS" signature="login_TC4()[pri:0, instance:login.Login@2c9f9fb0]" name="login_TC4" duration-ms="2" started-at="2019-12-17T20:57:01Z" finished-at="2019-12-17T20:57:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login_TC4 -->
       </class> <!-- login.Login -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- LoginTest -->
+  </suite> <!-- Login_Suit -->
 </testng-results>
